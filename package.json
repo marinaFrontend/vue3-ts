@@ -20,6 +20,7 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@mdi/font": "^7.4.47",
     "@nightwatch/vue": "^3.1.2",
     "@tsconfig/node22": "^22.0.0",
     "@types/jsdom": "^21.1.7",
@@ -45,6 +46,7 @@
     "vite-plugin-nightwatch": "^0.4.6",
     "vite-plugin-vue-devtools": "^7.6.8",
     "vitest": "^2.1.8",
-    "vue-tsc": "^2.1.10"
+    "vue-tsc": "^2.1.10",
+    "vuetify": "^3.7.7"
   }
 }
