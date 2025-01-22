@@ -1,29 +1,29 @@
 <template>
   <div>
-    <v-list v-if="data.length">
-      <TodoItem v-for="item in data" :key="item.id" :data="item" />
-    </v-list>
-    <p v-else>{{ noDataMsg }}</p>
+    <v-skeleton-loader v-if="store.isFetching" :type="`sentences@${store.data.length || '3'}`" />
+    <template v-else>
+      <v-list v-if="store.isReady && store.data.length">
+        <TodoItem v-for="item in store.data" :key="item.id" :data="item" />
+      </v-list>
+      <p v-else>{{ noDataMsg }}</p>
+    </template>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import TodoItem from "./TodoItem.vue";
+import { ref, onMounted } from 'vue';
+import { useTodoStore } from '@/stores/todo'
+import TodoItem from './TodoItem.vue'
 
-type TodoItemType = {
-  id: number,
-  title: string,
-  descr: string | null,
-  isDone: boolean,
-}
-
-const data: TodoItemType[] = ref([{
-  id: 0,
-  title: '1 задача',
-  descr: 'описание задачи',
-  isDone: false,
-}]);
+const store = useTodoStore();
 
 const noDataMsg = ref('Нет ни одного элемента');
+
+async function getTodoList() {
+  await store.getTodoList()
+}
+
+onMounted(() => {
+  getTodoList();
+});
 </script>
