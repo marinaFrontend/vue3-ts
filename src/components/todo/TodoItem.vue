@@ -10,7 +10,7 @@
       <v-checkbox-btn v-model="doneModel" :disabled="store.isLoading" @click="toggleItem(data)" />
     </template>
     <template #append>
-      <TodoDeleteButton @delete="onDeleteItem(data)" />
+      <TodoDeleteButton @click="$emit('delete')" />
     </template>
   </v-list-item>
 </template>
@@ -28,10 +28,6 @@ const props = defineProps<{
 }>()
 
 const doneModel = ref<boolean>(false);
-
-async function onDeleteItem(item: TodoItemType) {
-  await store.deleteTodoItem(item);
-}
 
 async function toggleItem(item: TodoItemType) {
   await store.toggleTodoItem(item);

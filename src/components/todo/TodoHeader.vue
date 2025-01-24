@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex align-center mb-5">
-    <TodoCreateButton class="me-2" />
+    <TodoCreateButton class="me-2" @click="$emit('create')"/>
     <TodoClearButton />
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <v-btn :disabled="store.isFetching || store.isLoading" size="small" icon="mdi-delete-outline" flat  @click="$emit('delete')"/>
+  <v-btn :disabled="store.isFetching || store.isLoading" size="small" icon="mdi-delete-outline" flat/>
 </template>
 
 <script setup lang="ts">
