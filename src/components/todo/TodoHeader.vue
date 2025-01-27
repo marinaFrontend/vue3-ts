@@ -1,7 +1,13 @@
 <template>
-  <div class="d-flex align-center mb-5">
-    <TodoCreateButton class="me-2" @click="$emit('create')"/>
-    <TodoClearButton @click="openConfirmDeleteDialog" />
+  <div class="mb-5">
+    <v-row align="center">
+      <v-col cols="12" sm="auto">
+        <TodoCreateButton @click="$emit('create')"/>
+      </v-col>
+      <v-col cols="12" sm="auto">
+        <TodoClearButton @click="openConfirmDeleteDialog" />
+      </v-col>
+    </v-row>
     <TodoConfirmDialog
       v-model="confirmDeleteDialogVisible"
       title="Удалить все задачи?"

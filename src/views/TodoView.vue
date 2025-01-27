@@ -1,9 +1,9 @@
 <template>
-  <div class="todo-container">
+  <v-container class="mt-5">
     <TodoHeader @create="openCreateDialog" />
     <TodoList />
     <TodoCreateDialog v-model="createDialogVisible"/>
-  </div>
+  </v-container>
 </template>
 
 <script setup lang="ts">

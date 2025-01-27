@@ -1,9 +1,9 @@
 import type {TodoItemType} from '@/types/todoTypes'
 
 const initList: TodoItemType[] = [
-  { id: 1, title: 'Task 1', subtitle: 'This is a subtitle', isDone: false },
-  { id: 2, title: 'Task 2', subtitle: null, isDone: false },
-  { id: 3, title: 'Task 3', subtitle: 'This is a longer subtitle', isDone: false },
+  { id: 1, title: 'Task 1', subtitle: 'This is a subtitle', file: null, isDone: false },
+  { id: 2, title: 'Task 2', subtitle: null, file: null, isDone: false },
+  { id: 3, title: 'Task 3', subtitle: 'This is a longer subtitle', file: null, isDone: false },
 ]
 
 export const getList = () => {
