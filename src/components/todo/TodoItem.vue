@@ -2,12 +2,25 @@
   <v-list-item :value="data">
     <template #default>
       <v-card flat color="grey-darken-3">
-        <figure v-if="data.file" class="d-flex align-center" :style="{width: '100%', height: '100px'}">
-          <img src="#" width="100%" height="100%"  alt="" class="todo-image" style="object-fit: cover;" />
+        <figure
+          v-if="data.file"
+          class="d-flex align-center"
+          :style="{width: '100%', height: '100px'}"
+        >
+          <img
+            src="#"
+            width="100%"
+            height="100%"
+            alt=""
+            class="todo-image"
+            style="object-fit: cover"
+          />
         </figure>
 
         <v-card-title>
-          <span :class="{'text-decoration-line-through text-grey': data.isDone}">{{ data.title }}</span>
+          <span :class="{'text-decoration-line-through text-grey': data.isDone}">{{
+            data.title
+          }}</span>
         </v-card-title>
 
         <v-card-subtitle>
@@ -27,16 +40,16 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted, computed} from 'vue'
-import { useTodoStore } from '@/stores/todo'
+import {ref, onMounted} from 'vue';
+import {useTodoStore} from '@/stores/todo';
 import type {TodoItemType} from '@/types/todoTypes';
-import TodoDeleteButton from "./buttons/TodoDeleteButton.vue";
+import TodoDeleteButton from './buttons/TodoDeleteButton.vue';
 
 const store = useTodoStore();
 
 const props = defineProps<{
-  data: TodoItemType
-}>()
+  data: TodoItemType;
+}>();
 
 const doneModel = ref<boolean>(false);
 
@@ -45,27 +58,31 @@ async function toggleItem(item: TodoItemType) {
   doneModel.value = item.isDone;
 }
 
-const previewFile = (file) => {
+const previewFile = (file?: Blob | null) => {
   const preview = document.querySelector('.todo-image');
   const reader = new FileReader();
 
-  reader.addEventListener(
-    "load",
-    () => {
-      preview.src = reader.result;
-    },
-    false,
-  );
+  if (preview) {
+    reader.addEventListener(
+      'load',
+      () => {
+        if (typeof reader.result === 'string') {
+          preview.setAttribute('src', reader.result);
+        }
+      },
+      false,
+    );
+  }
 
   if (file) {
     reader.readAsDataURL(file);
   }
-}
+};
 
 onMounted(() => {
   if (props.data) {
     doneModel.value = props.data.isDone;
     previewFile(props.data.file);
   }
-})
+});
 </script>
