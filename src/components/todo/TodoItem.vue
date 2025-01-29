@@ -66,9 +66,7 @@ const previewFile = (file?: Blob | null) => {
     reader.addEventListener(
       'load',
       () => {
-        if (typeof reader.result === 'string') {
-          preview.setAttribute('src', reader.result);
-        }
+        preview.src = reader.result as string;
       },
       false,
     );
